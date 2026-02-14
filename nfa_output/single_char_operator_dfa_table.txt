@@ -1,0 +1,8 @@
+DFA: single_char_operator_dfa
+Start state: 0
+Accept states: [1]
+State count: 2
+Accept-state token labels:
+  q1: ['single_char_operator']
+Transitions:
+  q0 --[! % * + - / < = >]--> q1

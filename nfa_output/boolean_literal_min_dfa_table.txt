@@ -1,0 +1,24 @@
+DFA: boolean_literal_min_dfa
+Start state: 0
+Accept states: [8]
+State count: 9
+Accept-state token labels:
+  q8: ['boolean_literal']
+Transitions:
+  q0 --[f]--> q1
+  q0 --[t]--> q2
+  q0 --[other]--> q3
+  q1 --[other]--> q3
+  q1 --[a]--> q4
+  q2 --[other]--> q3
+  q2 --[r]--> q5
+  q3 --[any]--> q3
+  q4 --[other]--> q3
+  q4 --[l]--> q6
+  q5 --[other]--> q3
+  q5 --[u]--> q7
+  q6 --[other]--> q3
+  q6 --[s]--> q7
+  q7 --[other]--> q3
+  q7 --[e]--> q8
+  q8 --[other]--> q3

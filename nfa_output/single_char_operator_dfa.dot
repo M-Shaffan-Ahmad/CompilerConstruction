@@ -1,0 +1,9 @@
+digraph DFA {
+  rankdir=LR;
+  node [shape=circle, width=0.8, height=0.8, fixedsize=true];
+  qi [shape=point];
+  qi -> q0;
+  q0 [shape=circle, label="0"];
+  q1 [shape=doublecircle, label="1", xlabel="single_char_operator"];
+  q0 -> q1 [label="[! % * + - / < = >]"];
+}

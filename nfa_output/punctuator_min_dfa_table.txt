@@ -1,0 +1,11 @@
+DFA: punctuator_min_dfa
+Start state: 0
+Accept states: [1]
+State count: 3
+Accept-state token labels:
+  q1: ['punctuator']
+Transitions:
+  q0 --[( ) , : ; [ ] { }]--> q1
+  q0 --[other]--> q2
+  q1 --[other]--> q2
+  q2 --[any]--> q2

@@ -1,0 +1,22 @@
+digraph DFA {
+  rankdir=LR;
+  node [shape=circle, width=0.8, height=0.8, fixedsize=true];
+  qi [shape=point];
+  qi -> q0;
+  q0 [shape=circle, label="0"];
+  q1 [shape=circle, label="1"];
+  q2 [shape=doublecircle, label="2", xlabel="integer_literal"];
+  q0 -> q1 [label="[+ -]"];
+  q0 -> q2 [label="[0-9]"];
+  qt_0_3 [shape=circle, label="T"];
+  qt_0_3 -> qt_0_3 [label="[any]"];
+  q0 -> qt_0_3 [label="[other]"];
+  q1 -> q2 [label="[0-9]"];
+  qt_1_3 [shape=circle, label="T"];
+  qt_1_3 -> qt_1_3 [label="[any]"];
+  q1 -> qt_1_3 [label="[other]"];
+  q2 -> q2 [label="[0-9]"];
+  qt_2_3 [shape=circle, label="T"];
+  qt_2_3 -> qt_2_3 [label="[any]"];
+  q2 -> qt_2_3 [label="[other]"];
+}
