@@ -1,0 +1,15 @@
+NFA: boolean_literal
+Start state: 0
+Accept states: [6, 11]
+Transitions:
+  q0 --λ--> q1
+  q0 --λ--> q2
+  q1 --t--> q3
+  q2 --f--> q7
+  q3 --r--> q4
+  q4 --u--> q5
+  q5 --e--> q6
+  q7 --a--> q8
+  q8 --l--> q9
+  q9 --s--> q10
+  q10 --e--> q11

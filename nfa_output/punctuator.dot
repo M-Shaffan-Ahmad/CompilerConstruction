@@ -1,0 +1,9 @@
+digraph NFA {
+  rankdir=LR;
+  node [shape=circle];
+  qi [shape=point];
+  qi -> q0;
+  q0 [shape=circle, label="0"];
+  q1 [shape=doublecircle, label="1"];
+  q0 -> q1 [label="[(){}[],;:]"];
+}

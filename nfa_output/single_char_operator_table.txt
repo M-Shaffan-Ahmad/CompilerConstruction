@@ -1,0 +1,5 @@
+NFA: single_char_operator
+Start state: 0
+Accept states: [1]
+Transitions:
+  q0 --[+\-*/%<>=!]--> q1

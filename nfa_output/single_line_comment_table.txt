@@ -1,0 +1,7 @@
+NFA: single_line_comment
+Start state: 0
+Accept states: [2]
+Transitions:
+  q0 --#--> q1
+  q1 --#--> q2
+  q2 --[^\n]--> q2
