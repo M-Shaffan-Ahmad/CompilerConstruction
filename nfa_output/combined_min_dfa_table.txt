@@ -74,7 +74,7 @@ Transitions:
   q8 --[r]--> q14
   q9 --[any]--> q9
   q10 --[other]--> q9
-  q10 --[\t \r space-~]--> q10
+  q10 --[^\n]--> q10
   q11 --[other]--> q9
   q11 --[0-9]--> q15
   q12 --[other]--> q9

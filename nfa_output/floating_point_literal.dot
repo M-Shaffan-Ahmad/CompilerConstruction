@@ -20,7 +20,7 @@ digraph NFA {
   q0 -> q2 [label="[0-9]"];
   q1 -> q2 [label="[0-9]"];
   q2 -> q2 [label="[0-9]"];
-  q2 -> q3 [label="."];
+  q2 -> q3 [label="[.]"];
   q3 -> q4 [label="[0-9]"];
   q4 -> q5 [label="[0-9]"];
   q4 -> q10 [label="[eE]"];

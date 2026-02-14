@@ -127,7 +127,7 @@ digraph NFA {
   q48 -> q50 [label="[0-9]"];
   q49 -> q50 [label="[0-9]"];
   q50 -> q50 [label="[0-9]"];
-  q50 -> q51 [label="."];
+  q50 -> q51 [label="[.]"];
   q51 -> q52 [label="[0-9]"];
   q52 -> q53 [label="[0-9]"];
   q52 -> q58 [label="[eE]"];

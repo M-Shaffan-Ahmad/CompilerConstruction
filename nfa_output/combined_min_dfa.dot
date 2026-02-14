@@ -103,7 +103,7 @@ digraph DFA {
   qt_10_9 [shape=circle, label="T"];
   qt_10_9 -> qt_10_9 [label="[any]"];
   q10 -> qt_10_9 [label="[other]"];
-  q10 -> q10 [label="[\\t \\r space-~]"];
+  q10 -> q10 [label="[^\\n]"];
   qt_11_9 [shape=circle, label="T"];
   qt_11_9 -> qt_11_9 [label="[any]"];
   q11 -> qt_11_9 [label="[other]"];

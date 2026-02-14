@@ -75,7 +75,7 @@ digraph DFA {
   q6 -> q11 [label="[0-9 _ a-z]"];
   q7 -> q12 [label="[a]"];
   q8 -> q13 [label="[r]"];
-  q9 -> q9 [label="[\\t \\r space-~]"];
+  q9 -> q9 [label="[^\\n]"];
   q10 -> q14 [label="[0-9]"];
   q11 -> q15 [label="[0-9 _ a-z]"];
   q12 -> q16 [label="[l]"];
