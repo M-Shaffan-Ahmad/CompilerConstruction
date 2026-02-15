@@ -1,0 +1,76 @@
+<IDENTIFIER, "A", Line: 2, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 2, Col: 2>
+<INTEGER_LITERAL, "10", Line: 2, Col: 3>
+<PUNCTUATOR, ";", Line: 2, Col: 5>
+<IDENTIFIER, "B", Line: 2, Col: 6>
+<SINGLE_CHAR_OPERATOR, "=", Line: 2, Col: 7>
+<INTEGER_LITERAL, "20", Line: 2, Col: 8>
+<PUNCTUATOR, ";", Line: 2, Col: 10>
+<IDENTIFIER, "C", Line: 2, Col: 11>
+<SINGLE_CHAR_OPERATOR, "=", Line: 2, Col: 12>
+<INTEGER_LITERAL, "30", Line: 2, Col: 13>
+<PUNCTUATOR, ";", Line: 2, Col: 15>
+<PUNCTUATOR, "(", Line: 3, Col: 1>
+<IDENTIFIER, "X", Line: 3, Col: 2>
+<SINGLE_CHAR_OPERATOR, "<", Line: 3, Col: 3>
+<IDENTIFIER, "Y", Line: 3, Col: 4>
+<PUNCTUATOR, ")", Line: 3, Col: 5>
+<SINGLE_CHAR_OPERATOR, "!", Line: 3, Col: 6>
+<IDENTIFIER, "Z", Line: 3, Col: 7>
+<IDENTIFIER, "Q", Line: 4, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 4, Col: 2>
+<INTEGER_LITERAL, "+999", Line: 4, Col: 3>
+<PUNCTUATOR, ";", Line: 4, Col: 7>
+<IDENTIFIER, "R", Line: 5, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 5, Col: 2>
+<INTEGER_LITERAL, "-123", Line: 5, Col: 3>
+<PUNCTUATOR, ";", Line: 5, Col: 7>
+<IDENTIFIER, "S", Line: 6, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 6, Col: 2>
+<INTEGER_LITERAL, "0", Line: 6, Col: 3>
+<PUNCTUATOR, ";", Line: 6, Col: 4>
+<IDENTIFIER, "P", Line: 7, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 7, Col: 2>
+<FLOATING_POINT_LITERAL, "123.456", Line: 7, Col: 3>
+<PUNCTUATOR, ";", Line: 7, Col: 10>
+<IDENTIFIER, "N", Line: 8, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 8, Col: 2>
+<FLOATING_POINT_LITERAL, "-0.000001", Line: 8, Col: 3>
+<PUNCTUATOR, ";", Line: 8, Col: 12>
+<IDENTIFIER, "M", Line: 9, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 9, Col: 2>
+<FLOATING_POINT_LITERAL, "42.0E+7", Line: 9, Col: 3>
+<PUNCTUATOR, ";", Line: 9, Col: 10>
+<BOOLEAN_LITERAL, "true", Line: 10, Col: 1>
+<PUNCTUATOR, ";", Line: 10, Col: 5>
+<BOOLEAN_LITERAL, "false", Line: 10, Col: 6>
+<PUNCTUATOR, ";", Line: 10, Col: 11>
+
+Scanner Statistics:
+  Total tokens: 47
+  Lines processed: 11
+  Count per token type:
+    BOOLEAN_LITERAL: 2
+    IDENTIFIER: 12
+    FLOATING_POINT_LITERAL: 3
+    INTEGER_LITERAL: 6
+    SINGLE_CHAR_OPERATOR: 11
+    PUNCTUATOR: 13
+
+Symbol Table:
+  Name | Type | First Occurrence | Frequency
+  A | identifier | Line 2, Col 1 | 1
+  B | identifier | Line 2, Col 6 | 1
+  C | identifier | Line 2, Col 11 | 1
+  X | identifier | Line 3, Col 2 | 1
+  Y | identifier | Line 3, Col 4 | 1
+  Z | identifier | Line 3, Col 7 | 1
+  Q | identifier | Line 4, Col 1 | 1
+  R | identifier | Line 5, Col 1 | 1
+  S | identifier | Line 6, Col 1 | 1
+  P | identifier | Line 7, Col 1 | 1
+  N | identifier | Line 8, Col 1 | 1
+  M | identifier | Line 9, Col 1 | 1
+
+Lexical Errors:
+  (none)

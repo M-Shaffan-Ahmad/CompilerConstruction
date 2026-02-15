@@ -1,0 +1,12 @@
+## test5: legacy + malformed sample (intentional errors)
+badIdentifier = 5;
+TooLongIdentifierabcdefghijklmnopqrstuvwxyz = 1;
+X = 12.3456789;
+Y = 3.;
+Z = +.5;
+T = 1.2.3;
+S = "string";
+C = 'a';
+A += B;
+M = #* not-supported-multiline *#;
+@

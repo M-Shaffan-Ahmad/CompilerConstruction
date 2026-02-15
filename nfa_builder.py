@@ -215,7 +215,9 @@ class DFA:
 
             for dst in sorted(grouped):
                 if grouped[dst]:
-                    label = _chars_to_label(grouped[dst])
+                    label = _chars_to_label_with_alphabet(
+                        grouped[dst], self.alphabet_set
+                    )
                 else:
                     label = "[other]"
                 rows.append((src, label, dst))
@@ -332,6 +334,13 @@ def _chars_to_label(chars: Set[str]) -> str:
                 parts.append(_render_char(chr(ords[idx])))
         i = j + 1
     return "[" + " ".join(parts) + "]"
+
+
+def _chars_to_label_with_alphabet(chars: Set[str], alphabet: Set[str]) -> str:
+    # Prefer compact regex-like label for "any non-newline".
+    if ("\n" in alphabet) and chars == (alphabet - {"\n"}):
+        return r"[^\n]"
+    return _chars_to_label(chars)
 
 
 def nfa_to_dfa(
@@ -571,7 +580,8 @@ def build_floating_point_nfa() -> NFA:
     nfa.add_transition(s0, s2, "[0-9]", _is_digit)
     nfa.add_transition(s1, s2, "[0-9]", _is_digit)
     nfa.add_transition(s2, s2, "[0-9]", _is_digit)
-    nfa.add_transition(s2, s3, ".", _exact("."))
+    # Use [.] for readability in exported graphs/tables (plain "." is easy to miss).
+    nfa.add_transition(s2, s3, "[.]", _exact("."))
 
     # Fractional part: 1..6 digits
     frac_states: List[int] = []
@@ -842,6 +852,14 @@ def write_dfa_outputs(dfas: Dict[str, DFA], output_dir: Path, suffix: str) -> No
         table_path.write_text("\n".join(table_lines) + "\n", encoding="utf-8")
 
 
+def remove_individual_dfa_outputs(output_dir: Path, token_names: Iterable[str]) -> None:
+    for token in token_names:
+        for suffix in ("dfa", "min_dfa"):
+            (output_dir / f"{token}_{suffix}.dot").unlink(missing_ok=True)
+            (output_dir / f"{token}_{suffix}.png").unlink(missing_ok=True)
+            (output_dir / f"{token}_{suffix}_table.txt").unlink(missing_ok=True)
+
+
 def render_pngs(output_dir: Path) -> None:
     dot_bin = shutil.which("dot")
     if not dot_bin:
@@ -983,11 +1001,6 @@ def main() -> None:
 
     nfas = build_all_nfas()
     combined, accept_labels = build_combined_nfa(nfas, COMBINED_PRIORITY)
-    dfas = {name: nfa_to_dfa(nfa, name=f"{name}_dfa") for name, nfa in nfas.items()}
-    min_dfas = {
-        name: minimize_dfa(dfa, name=f"{name}_min_dfa")
-        for name, dfa in dfas.items()
-    }
     combined_dfa = nfa_to_dfa(
         combined,
         nfa_accept_labels=accept_labels,
@@ -997,8 +1010,7 @@ def main() -> None:
     output_dir = Path(args.output_dir)
     write_outputs(nfas, output_dir)
     write_combined_output(combined, accept_labels, output_dir)
-    write_dfa_outputs(dfas, output_dir, "dfa")
-    write_dfa_outputs(min_dfas, output_dir, "min_dfa")
+    remove_individual_dfa_outputs(output_dir, nfas.keys())
     write_dfa_outputs({"combined": combined_dfa}, output_dir, "dfa")
     write_dfa_outputs({"combined": combined_min_dfa}, output_dir, "min_dfa")
     print(f"Wrote NFA/DFA files to: {output_dir}")
@@ -1007,6 +1019,11 @@ def main() -> None:
         render_pngs(output_dir)
 
     if args.run_tests:
+        dfas = {name: nfa_to_dfa(nfa, name=f"{name}_dfa") for name, nfa in nfas.items()}
+        min_dfas = {
+            name: minimize_dfa(dfa, name=f"{name}_min_dfa")
+            for name, dfa in dfas.items()
+        }
         per_token_ok = run_tests(nfas)
         combined_ok = run_combined_tests(combined, accept_labels)
         dfa_ok = run_dfa_tests(nfas, dfas, min_dfas)

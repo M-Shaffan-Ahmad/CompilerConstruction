@@ -1,0 +1,52 @@
+<BOOLEAN_LITERAL, "true", Line: 2, Col: 1>
+<BOOLEAN_LITERAL, "false", Line: 2, Col: 6>
+<IDENTIFIER, "A", Line: 3, Col: 1>
+<IDENTIFIER, "Count_2", Line: 3, Col: 3>
+<IDENTIFIER, "Z9", Line: 3, Col: 11>
+<INTEGER_LITERAL, "+12", Line: 4, Col: 1>
+<INTEGER_LITERAL, "-7", Line: 4, Col: 5>
+<INTEGER_LITERAL, "3", Line: 4, Col: 8>
+<INTEGER_LITERAL, "0", Line: 4, Col: 10>
+<FLOATING_POINT_LITERAL, "3.14", Line: 5, Col: 1>
+<FLOATING_POINT_LITERAL, "-0.125", Line: 5, Col: 6>
+<FLOATING_POINT_LITERAL, "+2.5", Line: 5, Col: 13>
+<FLOATING_POINT_LITERAL, "1.5e10", Line: 5, Col: 18>
+<FLOATING_POINT_LITERAL, "2.0E-3", Line: 5, Col: 25>
+<SINGLE_CHAR_OPERATOR, "+", Line: 6, Col: 1>
+<SINGLE_CHAR_OPERATOR, "-", Line: 6, Col: 3>
+<SINGLE_CHAR_OPERATOR, "*", Line: 6, Col: 5>
+<SINGLE_CHAR_OPERATOR, "/", Line: 6, Col: 7>
+<SINGLE_CHAR_OPERATOR, "%", Line: 6, Col: 9>
+<SINGLE_CHAR_OPERATOR, "<", Line: 6, Col: 11>
+<SINGLE_CHAR_OPERATOR, ">", Line: 6, Col: 13>
+<SINGLE_CHAR_OPERATOR, "=", Line: 6, Col: 15>
+<SINGLE_CHAR_OPERATOR, "!", Line: 6, Col: 17>
+<PUNCTUATOR, "(", Line: 7, Col: 1>
+<PUNCTUATOR, ")", Line: 7, Col: 3>
+<PUNCTUATOR, "{", Line: 7, Col: 5>
+<PUNCTUATOR, "}", Line: 7, Col: 7>
+<PUNCTUATOR, "[", Line: 7, Col: 9>
+<PUNCTUATOR, "]", Line: 7, Col: 11>
+<PUNCTUATOR, ",", Line: 7, Col: 13>
+<PUNCTUATOR, ";", Line: 7, Col: 15>
+<PUNCTUATOR, ":", Line: 7, Col: 17>
+
+Scanner Statistics:
+  Total tokens: 32
+  Lines processed: 7
+  Count per token type:
+    BOOLEAN_LITERAL: 2
+    IDENTIFIER: 3
+    FLOATING_POINT_LITERAL: 5
+    INTEGER_LITERAL: 4
+    SINGLE_CHAR_OPERATOR: 9
+    PUNCTUATOR: 9
+
+Symbol Table:
+  Name | Type | First Occurrence | Frequency
+  A | identifier | Line 3, Col 1 | 1
+  Count_2 | identifier | Line 3, Col 3 | 1
+  Z9 | identifier | Line 3, Col 11 | 1
+
+Lexical Errors:
+  (none)

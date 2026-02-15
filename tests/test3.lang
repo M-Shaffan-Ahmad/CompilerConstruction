@@ -1,0 +1,8 @@
+## test3: valid identifiers, operators, punctuators, and comments
+Main_1(Arg1,Arg2){
+Result=Arg1+Arg2;
+Flag=true;
+## inline comment skipped here
+Check=!false;
+Values[0]=3;
+}

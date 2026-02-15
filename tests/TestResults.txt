@@ -1,0 +1,328 @@
+ManualScanner Test Results (7 selected token classes)
+Generated: 2026-02-15 03:47:59 UTC
+
+===== CompilerConstruction/tests/test1.lang =====
+<BOOLEAN_LITERAL, "true", Line: 2, Col: 1>
+<BOOLEAN_LITERAL, "false", Line: 2, Col: 6>
+<IDENTIFIER, "A", Line: 3, Col: 1>
+<IDENTIFIER, "Count_2", Line: 3, Col: 3>
+<IDENTIFIER, "Z9", Line: 3, Col: 11>
+<INTEGER_LITERAL, "+12", Line: 4, Col: 1>
+<INTEGER_LITERAL, "-7", Line: 4, Col: 5>
+<INTEGER_LITERAL, "3", Line: 4, Col: 8>
+<INTEGER_LITERAL, "0", Line: 4, Col: 10>
+<FLOATING_POINT_LITERAL, "3.14", Line: 5, Col: 1>
+<FLOATING_POINT_LITERAL, "-0.125", Line: 5, Col: 6>
+<FLOATING_POINT_LITERAL, "+2.5", Line: 5, Col: 13>
+<FLOATING_POINT_LITERAL, "1.5e10", Line: 5, Col: 18>
+<FLOATING_POINT_LITERAL, "2.0E-3", Line: 5, Col: 25>
+<SINGLE_CHAR_OPERATOR, "+", Line: 6, Col: 1>
+<SINGLE_CHAR_OPERATOR, "-", Line: 6, Col: 3>
+<SINGLE_CHAR_OPERATOR, "*", Line: 6, Col: 5>
+<SINGLE_CHAR_OPERATOR, "/", Line: 6, Col: 7>
+<SINGLE_CHAR_OPERATOR, "%", Line: 6, Col: 9>
+<SINGLE_CHAR_OPERATOR, "<", Line: 6, Col: 11>
+<SINGLE_CHAR_OPERATOR, ">", Line: 6, Col: 13>
+<SINGLE_CHAR_OPERATOR, "=", Line: 6, Col: 15>
+<SINGLE_CHAR_OPERATOR, "!", Line: 6, Col: 17>
+<PUNCTUATOR, "(", Line: 7, Col: 1>
+<PUNCTUATOR, ")", Line: 7, Col: 3>
+<PUNCTUATOR, "{", Line: 7, Col: 5>
+<PUNCTUATOR, "}", Line: 7, Col: 7>
+<PUNCTUATOR, "[", Line: 7, Col: 9>
+<PUNCTUATOR, "]", Line: 7, Col: 11>
+<PUNCTUATOR, ",", Line: 7, Col: 13>
+<PUNCTUATOR, ";", Line: 7, Col: 15>
+<PUNCTUATOR, ":", Line: 7, Col: 17>
+
+Scanner Statistics:
+  Total tokens: 32
+  Lines processed: 7
+  Count per token type:
+    BOOLEAN_LITERAL: 2
+    IDENTIFIER: 3
+    FLOATING_POINT_LITERAL: 5
+    INTEGER_LITERAL: 4
+    SINGLE_CHAR_OPERATOR: 9
+    PUNCTUATOR: 9
+
+Symbol Table:
+  Name | Type | First Occurrence | Frequency
+  A | identifier | Line 3, Col 1 | 1
+  Count_2 | identifier | Line 3, Col 3 | 1
+  Z9 | identifier | Line 3, Col 11 | 1
+
+Lexical Errors:
+  (none)
+
+===== CompilerConstruction/tests/test2.lang =====
+<IDENTIFIER, "A", Line: 2, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 2, Col: 2>
+<INTEGER_LITERAL, "10", Line: 2, Col: 3>
+<PUNCTUATOR, ";", Line: 2, Col: 5>
+<IDENTIFIER, "B", Line: 2, Col: 6>
+<SINGLE_CHAR_OPERATOR, "=", Line: 2, Col: 7>
+<INTEGER_LITERAL, "20", Line: 2, Col: 8>
+<PUNCTUATOR, ";", Line: 2, Col: 10>
+<IDENTIFIER, "C", Line: 2, Col: 11>
+<SINGLE_CHAR_OPERATOR, "=", Line: 2, Col: 12>
+<INTEGER_LITERAL, "30", Line: 2, Col: 13>
+<PUNCTUATOR, ";", Line: 2, Col: 15>
+<PUNCTUATOR, "(", Line: 3, Col: 1>
+<IDENTIFIER, "X", Line: 3, Col: 2>
+<SINGLE_CHAR_OPERATOR, "<", Line: 3, Col: 3>
+<IDENTIFIER, "Y", Line: 3, Col: 4>
+<PUNCTUATOR, ")", Line: 3, Col: 5>
+<SINGLE_CHAR_OPERATOR, "!", Line: 3, Col: 6>
+<IDENTIFIER, "Z", Line: 3, Col: 7>
+<IDENTIFIER, "Q", Line: 4, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 4, Col: 2>
+<INTEGER_LITERAL, "+999", Line: 4, Col: 3>
+<PUNCTUATOR, ";", Line: 4, Col: 7>
+<IDENTIFIER, "R", Line: 5, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 5, Col: 2>
+<INTEGER_LITERAL, "-123", Line: 5, Col: 3>
+<PUNCTUATOR, ";", Line: 5, Col: 7>
+<IDENTIFIER, "S", Line: 6, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 6, Col: 2>
+<INTEGER_LITERAL, "0", Line: 6, Col: 3>
+<PUNCTUATOR, ";", Line: 6, Col: 4>
+<IDENTIFIER, "P", Line: 7, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 7, Col: 2>
+<FLOATING_POINT_LITERAL, "123.456", Line: 7, Col: 3>
+<PUNCTUATOR, ";", Line: 7, Col: 10>
+<IDENTIFIER, "N", Line: 8, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 8, Col: 2>
+<FLOATING_POINT_LITERAL, "-0.000001", Line: 8, Col: 3>
+<PUNCTUATOR, ";", Line: 8, Col: 12>
+<IDENTIFIER, "M", Line: 9, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 9, Col: 2>
+<FLOATING_POINT_LITERAL, "42.0E+7", Line: 9, Col: 3>
+<PUNCTUATOR, ";", Line: 9, Col: 10>
+<BOOLEAN_LITERAL, "true", Line: 10, Col: 1>
+<PUNCTUATOR, ";", Line: 10, Col: 5>
+<BOOLEAN_LITERAL, "false", Line: 10, Col: 6>
+<PUNCTUATOR, ";", Line: 10, Col: 11>
+
+Scanner Statistics:
+  Total tokens: 47
+  Lines processed: 11
+  Count per token type:
+    BOOLEAN_LITERAL: 2
+    IDENTIFIER: 12
+    FLOATING_POINT_LITERAL: 3
+    INTEGER_LITERAL: 6
+    SINGLE_CHAR_OPERATOR: 11
+    PUNCTUATOR: 13
+
+Symbol Table:
+  Name | Type | First Occurrence | Frequency
+  A | identifier | Line 2, Col 1 | 1
+  B | identifier | Line 2, Col 6 | 1
+  C | identifier | Line 2, Col 11 | 1
+  X | identifier | Line 3, Col 2 | 1
+  Y | identifier | Line 3, Col 4 | 1
+  Z | identifier | Line 3, Col 7 | 1
+  Q | identifier | Line 4, Col 1 | 1
+  R | identifier | Line 5, Col 1 | 1
+  S | identifier | Line 6, Col 1 | 1
+  P | identifier | Line 7, Col 1 | 1
+  N | identifier | Line 8, Col 1 | 1
+  M | identifier | Line 9, Col 1 | 1
+
+Lexical Errors:
+  (none)
+
+===== CompilerConstruction/tests/test3.lang =====
+<IDENTIFIER, "Main_1", Line: 2, Col: 1>
+<PUNCTUATOR, "(", Line: 2, Col: 7>
+<IDENTIFIER, "Arg1", Line: 2, Col: 8>
+<PUNCTUATOR, ",", Line: 2, Col: 12>
+<IDENTIFIER, "Arg2", Line: 2, Col: 13>
+<PUNCTUATOR, ")", Line: 2, Col: 17>
+<PUNCTUATOR, "{", Line: 2, Col: 18>
+<IDENTIFIER, "Result", Line: 3, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 3, Col: 7>
+<IDENTIFIER, "Arg1", Line: 3, Col: 8>
+<SINGLE_CHAR_OPERATOR, "+", Line: 3, Col: 12>
+<IDENTIFIER, "Arg2", Line: 3, Col: 13>
+<PUNCTUATOR, ";", Line: 3, Col: 17>
+<IDENTIFIER, "Flag", Line: 4, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 4, Col: 5>
+<BOOLEAN_LITERAL, "true", Line: 4, Col: 6>
+<PUNCTUATOR, ";", Line: 4, Col: 10>
+<IDENTIFIER, "Check", Line: 6, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 6, Col: 6>
+<SINGLE_CHAR_OPERATOR, "!", Line: 6, Col: 7>
+<BOOLEAN_LITERAL, "false", Line: 6, Col: 8>
+<PUNCTUATOR, ";", Line: 6, Col: 13>
+<IDENTIFIER, "Values", Line: 7, Col: 1>
+<PUNCTUATOR, "[", Line: 7, Col: 7>
+<INTEGER_LITERAL, "0", Line: 7, Col: 8>
+<PUNCTUATOR, "]", Line: 7, Col: 9>
+<SINGLE_CHAR_OPERATOR, "=", Line: 7, Col: 10>
+<INTEGER_LITERAL, "3", Line: 7, Col: 11>
+<PUNCTUATOR, ";", Line: 7, Col: 12>
+<PUNCTUATOR, "}", Line: 8, Col: 1>
+
+Scanner Statistics:
+  Total tokens: 30
+  Lines processed: 8
+  Count per token type:
+    BOOLEAN_LITERAL: 2
+    IDENTIFIER: 9
+    INTEGER_LITERAL: 2
+    SINGLE_CHAR_OPERATOR: 6
+    PUNCTUATOR: 11
+
+Symbol Table:
+  Name | Type | First Occurrence | Frequency
+  Main_1 | identifier | Line 2, Col 1 | 1
+  Arg1 | identifier | Line 2, Col 8 | 2
+  Arg2 | identifier | Line 2, Col 13 | 2
+  Result | identifier | Line 3, Col 1 | 1
+  Flag | identifier | Line 4, Col 1 | 1
+  Check | identifier | Line 6, Col 1 | 1
+  Values | identifier | Line 7, Col 1 | 1
+
+Lexical Errors:
+  (none)
+
+===== CompilerConstruction/tests/test4.lang =====
+<IDENTIFIER, "Count", Line: 3, Col: 9>
+<SINGLE_CHAR_OPERATOR, "=", Line: 3, Col: 15>
+<INTEGER_LITERAL, "5", Line: 3, Col: 17>
+<PUNCTUATOR, ";", Line: 3, Col: 18>
+<PUNCTUATOR, "(", Line: 4, Col: 6>
+<IDENTIFIER, "Count", Line: 4, Col: 7>
+<SINGLE_CHAR_OPERATOR, ">", Line: 4, Col: 13>
+<SINGLE_CHAR_OPERATOR, "=", Line: 4, Col: 14>
+<INTEGER_LITERAL, "0", Line: 4, Col: 16>
+<SINGLE_CHAR_OPERATOR, "!", Line: 4, Col: 21>
+<BOOLEAN_LITERAL, "false", Line: 4, Col: 22>
+<PUNCTUATOR, ")", Line: 4, Col: 27>
+<PUNCTUATOR, "{", Line: 4, Col: 29>
+<PUNCTUATOR, "(", Line: 5, Col: 11>
+<PUNCTUATOR, ")", Line: 5, Col: 19>
+<PUNCTUATOR, ";", Line: 5, Col: 20>
+<IDENTIFIER, "Count", Line: 6, Col: 5>
+<SINGLE_CHAR_OPERATOR, "+", Line: 6, Col: 10>
+<SINGLE_CHAR_OPERATOR, "+", Line: 6, Col: 11>
+<PUNCTUATOR, ";", Line: 6, Col: 12>
+<PUNCTUATOR, "}", Line: 7, Col: 1>
+<SINGLE_CHAR_OPERATOR, "*", Line: 9, Col: 2>
+<SINGLE_CHAR_OPERATOR, "-", Line: 9, Col: 7>
+<SINGLE_CHAR_OPERATOR, "*", Line: 9, Col: 39>
+
+Scanner Statistics:
+  Total tokens: 24
+  Lines processed: 9
+  Count per token type:
+    BOOLEAN_LITERAL: 1
+    IDENTIFIER: 3
+    INTEGER_LITERAL: 2
+    SINGLE_CHAR_OPERATOR: 9
+    PUNCTUATOR: 9
+
+Symbol Table:
+  Name | Type | First Occurrence | Frequency
+  Count | identifier | Line 3, Col 9 | 3
+
+Lexical Errors:
+  ErrorType=InvalidIdentifier, Line=2, Col=1, Lexeme="start", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidIdentifier, Line=3, Col=1, Lexeme="declare", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidIdentifier, Line=4, Col=1, Lexeme="loop", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidCharacter, Line=4, Col=18, Lexeme="&", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidCharacter, Line=4, Col=19, Lexeme="&", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidIdentifier, Line=5, Col=5, Lexeme="output", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidCharacter, Line=5, Col=12, Lexeme="\"", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidIdentifier, Line=5, Col=13, Lexeme="hello", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidCharacter, Line=5, Col=18, Lexeme="\"", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidIdentifier, Line=8, Col=1, Lexeme="finish", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidCharacter, Line=9, Col=1, Lexeme="#", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidIdentifier, Line=9, Col=4, Lexeme="old", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidIdentifier, Line=9, Col=8, Lexeme="style", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidIdentifier, Line=9, Col=14, Lexeme="multiline", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidIdentifier, Line=9, Col=24, Lexeme="comment", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidIdentifier, Line=9, Col=32, Lexeme="syntax", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidCharacter, Line=9, Col=40, Lexeme="#", Reason=Character does not start any valid token in the selected 7 token classes.
+
+===== CompilerConstruction/tests/test5.lang =====
+<SINGLE_CHAR_OPERATOR, "=", Line: 2, Col: 15>
+<INTEGER_LITERAL, "5", Line: 2, Col: 17>
+<PUNCTUATOR, ";", Line: 2, Col: 18>
+<SINGLE_CHAR_OPERATOR, "=", Line: 3, Col: 45>
+<INTEGER_LITERAL, "1", Line: 3, Col: 47>
+<PUNCTUATOR, ";", Line: 3, Col: 48>
+<IDENTIFIER, "X", Line: 4, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 4, Col: 3>
+<PUNCTUATOR, ";", Line: 4, Col: 15>
+<IDENTIFIER, "Y", Line: 5, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 5, Col: 3>
+<PUNCTUATOR, ";", Line: 5, Col: 7>
+<IDENTIFIER, "Z", Line: 6, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 6, Col: 3>
+<PUNCTUATOR, ";", Line: 6, Col: 8>
+<IDENTIFIER, "T", Line: 7, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 7, Col: 3>
+<PUNCTUATOR, ";", Line: 7, Col: 10>
+<IDENTIFIER, "S", Line: 8, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 8, Col: 3>
+<PUNCTUATOR, ";", Line: 8, Col: 13>
+<IDENTIFIER, "C", Line: 9, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 9, Col: 3>
+<PUNCTUATOR, ";", Line: 9, Col: 8>
+<IDENTIFIER, "A", Line: 10, Col: 1>
+<SINGLE_CHAR_OPERATOR, "+", Line: 10, Col: 3>
+<SINGLE_CHAR_OPERATOR, "=", Line: 10, Col: 4>
+<IDENTIFIER, "B", Line: 10, Col: 6>
+<PUNCTUATOR, ";", Line: 10, Col: 7>
+<IDENTIFIER, "M", Line: 11, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 11, Col: 3>
+<SINGLE_CHAR_OPERATOR, "*", Line: 11, Col: 6>
+<SINGLE_CHAR_OPERATOR, "-", Line: 11, Col: 11>
+<SINGLE_CHAR_OPERATOR, "-", Line: 11, Col: 21>
+<SINGLE_CHAR_OPERATOR, "*", Line: 11, Col: 32>
+<PUNCTUATOR, ";", Line: 11, Col: 34>
+
+Scanner Statistics:
+  Total tokens: 36
+  Lines processed: 12
+  Count per token type:
+    IDENTIFIER: 9
+    INTEGER_LITERAL: 2
+    SINGLE_CHAR_OPERATOR: 15
+    PUNCTUATOR: 10
+
+Symbol Table:
+  Name | Type | First Occurrence | Frequency
+  X | identifier | Line 4, Col 1 | 1
+  Y | identifier | Line 5, Col 1 | 1
+  Z | identifier | Line 6, Col 1 | 1
+  T | identifier | Line 7, Col 1 | 1
+  S | identifier | Line 8, Col 1 | 1
+  C | identifier | Line 9, Col 1 | 1
+  A | identifier | Line 10, Col 1 | 1
+  B | identifier | Line 10, Col 6 | 1
+  M | identifier | Line 11, Col 1 | 1
+
+Lexical Errors:
+  ErrorType=InvalidIdentifier, Line=2, Col=1, Lexeme="badIdentifier", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidIdentifier, Line=3, Col=1, Lexeme="TooLongIdentifierabcdefghijklmnopqrstuvwxyz", Reason=Identifier exceeds maximum length of 31 characters.
+  ErrorType=MalformedLiteral, Line=4, Col=5, Lexeme="12.3456789", Reason=Floating literal allows at most 6 digits after decimal point.
+  ErrorType=MalformedLiteral, Line=5, Col=5, Lexeme="3.", Reason=Floating literal requires at least one digit after decimal point.
+  ErrorType=MalformedLiteral, Line=6, Col=5, Lexeme="+.5", Reason=Floating literal must contain digits before decimal point.
+  ErrorType=MalformedLiteral, Line=7, Col=5, Lexeme="1.2.3", Reason=Floating literal contains multiple decimal points.
+  ErrorType=InvalidCharacter, Line=8, Col=5, Lexeme="\"", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidIdentifier, Line=8, Col=6, Lexeme="string", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidCharacter, Line=8, Col=12, Lexeme="\"", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidCharacter, Line=9, Col=5, Lexeme="'", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidIdentifier, Line=9, Col=6, Lexeme="a", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidCharacter, Line=9, Col=7, Lexeme="'", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidCharacter, Line=11, Col=5, Lexeme="#", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidIdentifier, Line=11, Col=8, Lexeme="not", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidIdentifier, Line=11, Col=12, Lexeme="supported", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidIdentifier, Line=11, Col=22, Lexeme="multiline", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidCharacter, Line=11, Col=33, Lexeme="#", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidCharacter, Line=12, Col=1, Lexeme="@", Reason=Character does not start any valid token in the selected 7 token classes.
+

@@ -1,0 +1,11 @@
+## test2: mixed valid tokens and boundaries
+A=10;B=20;C=30;
+(X<Y)!Z
+Q=+999;
+R=-123;
+S=0;
+P=123.456;
+N=-0.000001;
+M=42.0E+7;
+true;false;
+## another comment to skip

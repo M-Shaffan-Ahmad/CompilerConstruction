@@ -1,0 +1,7 @@
+## test1: valid 7-class coverage
+true false
+A Count_2 Z9
++12 -7 3 0
+3.14 -0.125 +2.5 1.5e10 2.0E-3
++ - * / % < > = !
+( ) { } [ ] , ; :
