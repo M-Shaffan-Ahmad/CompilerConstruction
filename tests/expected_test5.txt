@@ -1,77 +1,40 @@
-<SINGLE_CHAR_OPERATOR, "=", Line: 2, Col: 15>
-<INTEGER_LITERAL, "5", Line: 2, Col: 17>
-<PUNCTUATOR, ";", Line: 2, Col: 18>
-<SINGLE_CHAR_OPERATOR, "=", Line: 3, Col: 45>
-<INTEGER_LITERAL, "1", Line: 3, Col: 47>
-<PUNCTUATOR, ";", Line: 3, Col: 48>
-<IDENTIFIER, "X", Line: 4, Col: 1>
-<SINGLE_CHAR_OPERATOR, "=", Line: 4, Col: 3>
-<PUNCTUATOR, ";", Line: 4, Col: 15>
+<IDENTIFIER, "X", Line: 3, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 3, Col: 3>
+<PUNCTUATOR, ";", Line: 3, Col: 15>
 <IDENTIFIER, "Y", Line: 5, Col: 1>
 <SINGLE_CHAR_OPERATOR, "=", Line: 5, Col: 3>
 <PUNCTUATOR, ";", Line: 5, Col: 7>
-<IDENTIFIER, "Z", Line: 6, Col: 1>
-<SINGLE_CHAR_OPERATOR, "=", Line: 6, Col: 3>
-<PUNCTUATOR, ";", Line: 6, Col: 8>
-<IDENTIFIER, "T", Line: 7, Col: 1>
+<IDENTIFIER, "Z", Line: 7, Col: 1>
 <SINGLE_CHAR_OPERATOR, "=", Line: 7, Col: 3>
-<PUNCTUATOR, ";", Line: 7, Col: 10>
-<IDENTIFIER, "S", Line: 8, Col: 1>
-<SINGLE_CHAR_OPERATOR, "=", Line: 8, Col: 3>
-<PUNCTUATOR, ";", Line: 8, Col: 13>
-<IDENTIFIER, "C", Line: 9, Col: 1>
+<INTEGER_LITERAL, "5", Line: 7, Col: 6>
+<PUNCTUATOR, ";", Line: 7, Col: 7>
+<IDENTIFIER, "T", Line: 9, Col: 1>
 <SINGLE_CHAR_OPERATOR, "=", Line: 9, Col: 3>
-<PUNCTUATOR, ";", Line: 9, Col: 8>
-<IDENTIFIER, "A", Line: 10, Col: 1>
-<SINGLE_CHAR_OPERATOR, "+", Line: 10, Col: 3>
-<SINGLE_CHAR_OPERATOR, "=", Line: 10, Col: 4>
-<IDENTIFIER, "B", Line: 10, Col: 6>
-<PUNCTUATOR, ";", Line: 10, Col: 7>
-<IDENTIFIER, "M", Line: 11, Col: 1>
+<PUNCTUATOR, ";", Line: 9, Col: 10>
+<IDENTIFIER, "E", Line: 11, Col: 1>
 <SINGLE_CHAR_OPERATOR, "=", Line: 11, Col: 3>
-<SINGLE_CHAR_OPERATOR, "*", Line: 11, Col: 6>
-<SINGLE_CHAR_OPERATOR, "-", Line: 11, Col: 11>
-<SINGLE_CHAR_OPERATOR, "-", Line: 11, Col: 21>
-<SINGLE_CHAR_OPERATOR, "*", Line: 11, Col: 32>
-<PUNCTUATOR, ";", Line: 11, Col: 34>
+<PUNCTUATOR, ";", Line: 11, Col: 10>
 
 Scanner Statistics:
-  Total tokens: 36
-  Lines processed: 12
+  Total tokens: 16
+  Lines processed: 11
   Count per token type:
-    IDENTIFIER: 9
-    INTEGER_LITERAL: 2
-    SINGLE_CHAR_OPERATOR: 15
-    PUNCTUATOR: 10
+    IDENTIFIER: 5
+    INTEGER_LITERAL: 1
+    SINGLE_CHAR_OPERATOR: 5
+    PUNCTUATOR: 5
 
 Symbol Table:
   Name | Type | First Occurrence | Frequency
-  X | identifier | Line 4, Col 1 | 1
+  X | identifier | Line 3, Col 1 | 1
   Y | identifier | Line 5, Col 1 | 1
-  Z | identifier | Line 6, Col 1 | 1
-  T | identifier | Line 7, Col 1 | 1
-  S | identifier | Line 8, Col 1 | 1
-  C | identifier | Line 9, Col 1 | 1
-  A | identifier | Line 10, Col 1 | 1
-  B | identifier | Line 10, Col 6 | 1
-  M | identifier | Line 11, Col 1 | 1
+  Z | identifier | Line 7, Col 1 | 1
+  T | identifier | Line 9, Col 1 | 1
+  E | identifier | Line 11, Col 1 | 1
 
 Lexical Errors:
-  ErrorType=InvalidIdentifier, Line=2, Col=1, Lexeme="badIdentifier", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidIdentifier, Line=3, Col=1, Lexeme="TooLongIdentifierabcdefghijklmnopqrstuvwxyz", Reason=Identifier exceeds maximum length of 31 characters.
-  ErrorType=MalformedLiteral, Line=4, Col=5, Lexeme="12.3456789", Reason=Floating literal allows at most 6 digits after decimal point.
+  ErrorType=MalformedLiteral, Line=3, Col=5, Lexeme="12.3456789", Reason=Floating literal allows at most 6 digits after decimal point.
   ErrorType=MalformedLiteral, Line=5, Col=5, Lexeme="3.", Reason=Floating literal requires at least one digit after decimal point.
-  ErrorType=MalformedLiteral, Line=6, Col=5, Lexeme="+.5", Reason=Floating literal must contain digits before decimal point.
-  ErrorType=MalformedLiteral, Line=7, Col=5, Lexeme="1.2.3", Reason=Floating literal contains multiple decimal points.
-  ErrorType=InvalidCharacter, Line=8, Col=5, Lexeme="\"", Reason=Character does not start any valid token in the selected 7 token classes.
-  ErrorType=InvalidIdentifier, Line=8, Col=6, Lexeme="string", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidCharacter, Line=8, Col=12, Lexeme="\"", Reason=Character does not start any valid token in the selected 7 token classes.
-  ErrorType=InvalidCharacter, Line=9, Col=5, Lexeme="'", Reason=Character does not start any valid token in the selected 7 token classes.
-  ErrorType=InvalidIdentifier, Line=9, Col=6, Lexeme="a", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidCharacter, Line=9, Col=7, Lexeme="'", Reason=Character does not start any valid token in the selected 7 token classes.
-  ErrorType=InvalidCharacter, Line=11, Col=5, Lexeme="#", Reason=Character does not start any valid token in the selected 7 token classes.
-  ErrorType=InvalidIdentifier, Line=11, Col=8, Lexeme="not", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidIdentifier, Line=11, Col=12, Lexeme="supported", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidIdentifier, Line=11, Col=22, Lexeme="multiline", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidCharacter, Line=11, Col=33, Lexeme="#", Reason=Character does not start any valid token in the selected 7 token classes.
-  ErrorType=InvalidCharacter, Line=12, Col=1, Lexeme="@", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidCharacter, Line=7, Col=5, Lexeme=".", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=MalformedLiteral, Line=9, Col=5, Lexeme="1.2.3", Reason=Floating literal contains multiple decimal points.
+  ErrorType=MalformedLiteral, Line=11, Col=5, Lexeme="1.2E+", Reason=Exponent part must contain at least one digit.

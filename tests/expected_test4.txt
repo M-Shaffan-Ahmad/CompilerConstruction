@@ -1,57 +1,37 @@
-<IDENTIFIER, "Count", Line: 3, Col: 9>
 <SINGLE_CHAR_OPERATOR, "=", Line: 3, Col: 15>
-<INTEGER_LITERAL, "5", Line: 3, Col: 17>
-<PUNCTUATOR, ";", Line: 3, Col: 18>
-<PUNCTUATOR, "(", Line: 4, Col: 6>
-<IDENTIFIER, "Count", Line: 4, Col: 7>
-<SINGLE_CHAR_OPERATOR, ">", Line: 4, Col: 13>
-<SINGLE_CHAR_OPERATOR, "=", Line: 4, Col: 14>
-<INTEGER_LITERAL, "0", Line: 4, Col: 16>
-<SINGLE_CHAR_OPERATOR, "!", Line: 4, Col: 21>
-<BOOLEAN_LITERAL, "false", Line: 4, Col: 22>
-<PUNCTUATOR, ")", Line: 4, Col: 27>
-<PUNCTUATOR, "{", Line: 4, Col: 29>
-<PUNCTUATOR, "(", Line: 5, Col: 11>
-<PUNCTUATOR, ")", Line: 5, Col: 19>
-<PUNCTUATOR, ";", Line: 5, Col: 20>
-<IDENTIFIER, "Count", Line: 6, Col: 5>
-<SINGLE_CHAR_OPERATOR, "+", Line: 6, Col: 10>
-<SINGLE_CHAR_OPERATOR, "+", Line: 6, Col: 11>
-<PUNCTUATOR, ";", Line: 6, Col: 12>
-<PUNCTUATOR, "}", Line: 7, Col: 1>
-<SINGLE_CHAR_OPERATOR, "*", Line: 9, Col: 2>
-<SINGLE_CHAR_OPERATOR, "-", Line: 9, Col: 7>
-<SINGLE_CHAR_OPERATOR, "*", Line: 9, Col: 39>
+<INTEGER_LITERAL, "10", Line: 3, Col: 17>
+<PUNCTUATOR, ";", Line: 3, Col: 19>
+<SINGLE_CHAR_OPERATOR, "=", Line: 5, Col: 52>
+<INTEGER_LITERAL, "5", Line: 5, Col: 54>
+<PUNCTUATOR, ";", Line: 5, Col: 55>
+<IDENTIFIER, "Price", Line: 6, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 6, Col: 7>
+<INTEGER_LITERAL, "100", Line: 6, Col: 9>
+<PUNCTUATOR, ";", Line: 6, Col: 14>
+<IDENTIFIER, "Name", Line: 7, Col: 1>
+<SINGLE_CHAR_OPERATOR, "=", Line: 7, Col: 6>
+<IDENTIFIER, "String", Line: 7, Col: 10>
+<PUNCTUATOR, ";", Line: 7, Col: 17>
 
 Scanner Statistics:
-  Total tokens: 24
-  Lines processed: 9
+  Total tokens: 14
+  Lines processed: 7
   Count per token type:
-    BOOLEAN_LITERAL: 1
     IDENTIFIER: 3
-    INTEGER_LITERAL: 2
-    SINGLE_CHAR_OPERATOR: 9
-    PUNCTUATOR: 9
+    INTEGER_LITERAL: 3
+    SINGLE_CHAR_OPERATOR: 4
+    PUNCTUATOR: 4
 
 Symbol Table:
   Name | Type | First Occurrence | Frequency
-  Count | identifier | Line 3, Col 9 | 3
+  Price | identifier | Line 6, Col 1 | 1
+  Name | identifier | Line 7, Col 1 | 1
+  String | identifier | Line 7, Col 10 | 1
 
 Lexical Errors:
-  ErrorType=InvalidIdentifier, Line=2, Col=1, Lexeme="start", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidIdentifier, Line=3, Col=1, Lexeme="declare", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidIdentifier, Line=4, Col=1, Lexeme="loop", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidCharacter, Line=4, Col=18, Lexeme="&", Reason=Character does not start any valid token in the selected 7 token classes.
-  ErrorType=InvalidCharacter, Line=4, Col=19, Lexeme="&", Reason=Character does not start any valid token in the selected 7 token classes.
-  ErrorType=InvalidIdentifier, Line=5, Col=5, Lexeme="output", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidCharacter, Line=5, Col=12, Lexeme="\"", Reason=Character does not start any valid token in the selected 7 token classes.
-  ErrorType=InvalidIdentifier, Line=5, Col=13, Lexeme="hello", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidCharacter, Line=5, Col=18, Lexeme="\"", Reason=Character does not start any valid token in the selected 7 token classes.
-  ErrorType=InvalidIdentifier, Line=8, Col=1, Lexeme="finish", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidCharacter, Line=9, Col=1, Lexeme="#", Reason=Character does not start any valid token in the selected 7 token classes.
-  ErrorType=InvalidIdentifier, Line=9, Col=4, Lexeme="old", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidIdentifier, Line=9, Col=8, Lexeme="style", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidIdentifier, Line=9, Col=14, Lexeme="multiline", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidIdentifier, Line=9, Col=24, Lexeme="comment", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidIdentifier, Line=9, Col=32, Lexeme="syntax", Reason=Identifier must start with an uppercase letter.
-  ErrorType=InvalidCharacter, Line=9, Col=40, Lexeme="#", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidIdentifier, Line=3, Col=1, Lexeme="badIdentifier", Reason=Identifier must start with an uppercase letter.
+  ErrorType=InvalidIdentifier, Line=5, Col=1, Lexeme="ThisIdentifierIsWayTooLongToBeAcceptedByTheScanner", Reason=Identifier exceeds maximum length of 31 characters.
+  ErrorType=InvalidCharacter, Line=6, Col=13, Lexeme="@", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidCharacter, Line=7, Col=8, Lexeme="$", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidCharacter, Line=7, Col=9, Lexeme="\"", Reason=Character does not start any valid token in the selected 7 token classes.
+  ErrorType=InvalidCharacter, Line=7, Col=16, Lexeme="\"", Reason=Character does not start any valid token in the selected 7 token classes.

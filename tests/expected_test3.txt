@@ -1,37 +1,37 @@
-<IDENTIFIER, "Main_1", Line: 2, Col: 1>
-<PUNCTUATOR, "(", Line: 2, Col: 7>
-<IDENTIFIER, "Arg1", Line: 2, Col: 8>
-<PUNCTUATOR, ",", Line: 2, Col: 12>
-<IDENTIFIER, "Arg2", Line: 2, Col: 13>
-<PUNCTUATOR, ")", Line: 2, Col: 17>
-<PUNCTUATOR, "{", Line: 2, Col: 18>
-<IDENTIFIER, "Result", Line: 3, Col: 1>
-<SINGLE_CHAR_OPERATOR, "=", Line: 3, Col: 7>
-<IDENTIFIER, "Arg1", Line: 3, Col: 8>
-<SINGLE_CHAR_OPERATOR, "+", Line: 3, Col: 12>
-<IDENTIFIER, "Arg2", Line: 3, Col: 13>
-<PUNCTUATOR, ";", Line: 3, Col: 17>
-<IDENTIFIER, "Flag", Line: 4, Col: 1>
-<SINGLE_CHAR_OPERATOR, "=", Line: 4, Col: 5>
-<BOOLEAN_LITERAL, "true", Line: 4, Col: 6>
-<PUNCTUATOR, ";", Line: 4, Col: 10>
-<IDENTIFIER, "Check", Line: 6, Col: 1>
-<SINGLE_CHAR_OPERATOR, "=", Line: 6, Col: 6>
-<SINGLE_CHAR_OPERATOR, "!", Line: 6, Col: 7>
-<BOOLEAN_LITERAL, "false", Line: 6, Col: 8>
-<PUNCTUATOR, ";", Line: 6, Col: 13>
-<IDENTIFIER, "Values", Line: 7, Col: 1>
-<PUNCTUATOR, "[", Line: 7, Col: 7>
-<INTEGER_LITERAL, "0", Line: 7, Col: 8>
-<PUNCTUATOR, "]", Line: 7, Col: 9>
+<IDENTIFIER, "Main_func", Line: 3, Col: 1>
+<PUNCTUATOR, "(", Line: 3, Col: 10>
+<IDENTIFIER, "Arg1", Line: 3, Col: 11>
+<PUNCTUATOR, ",", Line: 3, Col: 15>
+<IDENTIFIER, "Arg2", Line: 3, Col: 16>
+<PUNCTUATOR, ")", Line: 3, Col: 20>
+<PUNCTUATOR, "{", Line: 3, Col: 21>
+<IDENTIFIER, "Result", Line: 4, Col: 5>
+<SINGLE_CHAR_OPERATOR, "=", Line: 4, Col: 11>
+<IDENTIFIER, "Arg1", Line: 4, Col: 12>
+<SINGLE_CHAR_OPERATOR, "+", Line: 4, Col: 16>
+<IDENTIFIER, "Arg2", Line: 4, Col: 17>
+<PUNCTUATOR, ";", Line: 4, Col: 21>
+<IDENTIFIER, "Flag", Line: 5, Col: 5>
+<SINGLE_CHAR_OPERATOR, "=", Line: 5, Col: 9>
+<BOOLEAN_LITERAL, "true", Line: 5, Col: 10>
+<PUNCTUATOR, ";", Line: 5, Col: 14>
+<IDENTIFIER, "Check", Line: 7, Col: 5>
 <SINGLE_CHAR_OPERATOR, "=", Line: 7, Col: 10>
-<INTEGER_LITERAL, "3", Line: 7, Col: 11>
-<PUNCTUATOR, ";", Line: 7, Col: 12>
-<PUNCTUATOR, "}", Line: 8, Col: 1>
+<SINGLE_CHAR_OPERATOR, "!", Line: 7, Col: 11>
+<BOOLEAN_LITERAL, "false", Line: 7, Col: 12>
+<PUNCTUATOR, ";", Line: 7, Col: 17>
+<IDENTIFIER, "Values", Line: 8, Col: 5>
+<PUNCTUATOR, "[", Line: 8, Col: 11>
+<INTEGER_LITERAL, "0", Line: 8, Col: 12>
+<PUNCTUATOR, "]", Line: 8, Col: 13>
+<SINGLE_CHAR_OPERATOR, "=", Line: 8, Col: 14>
+<INTEGER_LITERAL, "3", Line: 8, Col: 15>
+<PUNCTUATOR, ";", Line: 8, Col: 16>
+<PUNCTUATOR, "}", Line: 9, Col: 1>
 
 Scanner Statistics:
   Total tokens: 30
-  Lines processed: 8
+  Lines processed: 9
   Count per token type:
     BOOLEAN_LITERAL: 2
     IDENTIFIER: 9
@@ -41,13 +41,13 @@ Scanner Statistics:
 
 Symbol Table:
   Name | Type | First Occurrence | Frequency
-  Main_1 | identifier | Line 2, Col 1 | 1
-  Arg1 | identifier | Line 2, Col 8 | 2
-  Arg2 | identifier | Line 2, Col 13 | 2
-  Result | identifier | Line 3, Col 1 | 1
-  Flag | identifier | Line 4, Col 1 | 1
-  Check | identifier | Line 6, Col 1 | 1
-  Values | identifier | Line 7, Col 1 | 1
+  Main_func | identifier | Line 3, Col 1 | 1
+  Arg1 | identifier | Line 3, Col 11 | 2
+  Arg2 | identifier | Line 3, Col 16 | 2
+  Result | identifier | Line 4, Col 5 | 1
+  Flag | identifier | Line 5, Col 5 | 1
+  Check | identifier | Line 7, Col 5 | 1
+  Values | identifier | Line 8, Col 5 | 1
 
 Lexical Errors:
   (none)
