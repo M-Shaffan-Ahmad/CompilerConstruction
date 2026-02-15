@@ -1,9 +1,7 @@
-## test4: legacy full-language sample (intentional errors for unsupported tokens)
-start
-declare Count = 5;
-loop (Count >= 0 && !false) {
-    output("hello");
-    Count++;
-}
-finish
-#* old-style multiline comment syntax *#
+## test4: Identifiers and Illegal Character Errors
+##starts with lowercase
+badIdentifier = 10;
+##exceeds 31 characters
+ThisIdentifierIsWayTooLongToBeAcceptedByTheScanner = 5;
+Price = 100 @;
+Name = $"String";

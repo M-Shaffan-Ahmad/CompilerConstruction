@@ -1,8 +1,9 @@
-## test3: valid identifiers, operators, punctuators, and comments
-Main_1(Arg1,Arg2){
-Result=Arg1+Arg2;
-Flag=true;
-## inline comment skipped here
-Check=!false;
-Values[0]=3;
+## test3: Realistic logic flow
+##will increment comments removed counter
+Main_func(Arg1,Arg2){
+    Result=Arg1+Arg2;
+    Flag=true;
+    ##Inline comment to be skipped
+    Check=!false;
+    Values[0]=3;
 }

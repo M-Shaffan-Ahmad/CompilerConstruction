@@ -1,12 +1,11 @@
-## test5: legacy + malformed sample (intentional errors)
-badIdentifier = 5;
-TooLongIdentifierabcdefghijklmnopqrstuvwxyz = 1;
+## test5: Numeric Malformation Errors
+##more than 6 decimal digits
 X = 12.3456789;
+##missing digits after dot
 Y = 3.;
-Z = +.5;
+##missing digits before dot
+Z = .5;
+##double dot error
 T = 1.2.3;
-S = "string";
-C = 'a';
-A += B;
-M = #* not-supported-multiline *#;
-@
+##missing digits after E
+E = 1.2E+;
