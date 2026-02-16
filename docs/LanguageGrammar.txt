@@ -1,0 +1,378 @@
+================================================================================
+CUSTOM LANGUAGE GRAMMAR AND FORMAL SPECIFICATION
+================================================================================
+
+Language Name: CompilerConstruction Custom Language
+File Extension: .lang
+Scope: Lexical Analysis (Token Recognition)
+Grammar Level: Lexical (not yet full context-free grammar)
+
+================================================================================
+1. LEXICAL SPECIFICATION
+================================================================================
+
+1.1 ALPHABET & CHARACTER CLASSES
+────────────────────────────────────────────────────────────────────────────────
+
+Letter           ::= [a-zA-Z]
+Digit            ::= [0-9]
+UppercaseLetter  ::= [A-Z]
+LowercaseLetter  ::= [a-z]
+Sign             ::= [+-]
+HexDigit         ::= [0-9a-fA-F]  (reserved for future use)
+Whitespace       ::= SP | HT | NL | CR
+                    where SP=space, HT=tab, NL=newline, CR=carriage-return
+
+1.2 TOKEN DEFINITIONS
+────────────────────────────────────────────────────────────────────────────────
+
+/* Priority ordering: longest match wins, then declaration order */
+
+Token ::= Comment | BooleanLiteral | Identifier | FloatLiteral | 
+          IntegerLiteral | Operator | Punctuator | WhitespaceSeq | InvalidChar
+
+
+Comment ::= CommentStart CommentContent
+CommentStart ::= "##"
+CommentContent ::= (Char \ NewlineChar)* NewlineChar?
+Char ::= Any UTF-8 character
+NewlineChar ::= LF | CR
+
+
+BooleanLiteral ::= "true"  |  "false"
+RequireWordBoundary ::= NOT ( IdentifierChar )
+  where IdentifierChar = [a-z0-9_]
+
+
+Identifier ::= IdentifierStart IdentifierTail?
+IdentifierStart ::= UppercaseLetter                    /* MUST be uppercase */
+IdentifierTail ::= ( LowercaseLetter | Digit | "_" )*
+LengthConstraint ::= 1 to 31 characters (including start letter)
+
+ValidIdentifierExamples: A, Count, Value_123, MyVar, X
+InvalidExamples: count (lowercase), _X (starts with underscore), 
+                 A_B_C_D_E_F_G_H_I_J_K_L_M_N_O (34 chars, exceeds 31)
+
+
+IntegerLiteral ::= Sign? Digit+
+Sign ::= "+" | "-"
+Range ::= Unlimited (arbitrary precision)
+
+ValidExamples: 0, 42, -15, +100, 999
+InvalidExamples: 0x10 (hex not supported), 1.0 (fractional)
+
+
+FloatLiteral ::= Sign? IntegerPart "." FractionalPart
+IntegerPart ::= Digit+
+FractionalPart ::= Digit{1,6}              /* 1 to 6 decimal places */
+MaximumPrecision ::= 6 digits after decimal
+
+ValidExamples: 3.14, -0.001, +1.5, 0.123456
+InvalidExamples: 3. (no digits after dot, except through IntegerPart)
+                 .14 (no digits before dot)
+                 3.1234567 (exceeds 6 decimal places)
+                 1e10 (scientific notation not supported)
+
+
+Operator ::= SingleCharOperator
+SingleCharOperator ::= "+"  |  "-"  |  "*"  |  "/"  |  "%"  |  
+                       "<"  |  ">"  |  "="  |  "!"
+
+OperatorSemantics:
+  "+"   → Addition / Unary Plus
+  "-"   → Subtraction / Unary Minus
+  "*"   → Multiplication
+  "/"   → Division
+  "%"   → Modulo
+  "<"   → Less Than (Relational)
+  ">"   → Greater Than (Relational)
+  "="   → Assignment / Comparison
+  "!"   → Logical NOT / Negation
+
+
+Punctuator ::= "(" | ")" | "{" | "}" | "[" | "]" | "," | ";" | ":"
+
+PunctuatorUsage:
+  ( )   → Function calls, expression grouping
+  { }   → Code block delimitation
+  [ ]   → Array indexing
+  ,     → Element/argument separator
+  ;     → Statement terminator
+  :     → Label/type annotation (reserved use)
+
+
+Whitespace ::= SP+ | HT+ | NL+ | CR+
+Handling: Skip whitespace, update line and column counters
+Significance: Whitespace is not significant (separates tokens)
+
+
+================================================================================
+2. FORMAL TOKEN CLASSIFICATION
+================================================================================
+
+TokenType ::= SINGLE_LINE_COMMENT 
+            | BOOLEAN_LITERAL
+            | IDENTIFIER
+            | FLOATING_POINT_LITERAL
+            | INTEGER_LITERAL
+            | SINGLE_CHAR_OPERATOR
+            | PUNCTUATOR
+
+Each token has:
+  - type: TokenType
+  - lexeme: String (matched text)
+  - line: int (1-based)
+  - column: int (1-based)
+
+================================================================================
+3. LEXICAL RULES WITH PRECEDENCE
+================================================================================
+
+TokenRecognitionAlgorithm:
+  
+  INPUT: source code string, current position
+  OUTPUT: Token or Error
+  
+  ALGORITHM:
+    1. SKIP whitespace and update position counters
+    2. FOR each token pattern P in order:
+         TRY to match pattern P at current position
+         IF matches:
+           record match length L and priority PR
+    3. SELECT best match:
+         candidates := all matches from step 2
+         IF candidates is EMPTY:
+           return InvalidCharacterError
+         best := candidate with longest length
+         FOR each candidate C in candidates:
+           IF C.length > best.length:
+             best := C
+           ELSE IF C.length == best.length AND C.priority < best.priority:
+             best := C
+    4. RETURN token with best match properties
+    5. UPDATE position and line/column counters
+
+Priority Table (lower number = higher priority in case of length tie):
+  
+  Priority  Token Type                Pattern
+  ────────  ───────────────────────   ──────────────────────
+     1      SINGLE_LINE_COMMENT       ##[^\n]*
+     2      BOOLEAN_LITERAL           true|false
+     3      IDENTIFIER                [A-Z][a-z0-9_]{0,30}
+     4      FLOATING_POINT_LITERAL    [+-]?\d+\.\d{1,6}
+     5      INTEGER_LITERAL           [+-]?\d+
+     6      SINGLE_CHAR_OPERATOR      [+\-*/%<>=!]
+     7      PUNCTUATOR                [()\{\}\[\],:;]
+     8      INVALID_IDENTIFIER        [a-z][a-z0-9_]*
+
+================================================================================
+4. ERROR CLASSIFICATION
+================================================================================
+
+LexicalError ::= ErrorType | LineNumber | ColumnNumber | Lexeme | Reason
+
+ErrorType ::= InvalidCharacter
+            | InvalidIdentifier
+            | MalformedLiteral
+            | InternalScannerError
+
+InvalidCharacter Error:
+  Definition: Character that doesn't match any valid token pattern
+  Lexeme: Single character
+  Reason: "Character does not start any valid token in the selected 7 token classes."
+  Example: '@' outside of any valid context
+
+InvalidIdentifier Error:
+  Definition: Identifier violating rules
+  Cases:
+    a) Lowercase start: [a-z]... (use priority 8 pattern)
+       Reason: "Identifier must start with an uppercase letter."
+       Example: count (should be Count)
+    
+    b) Exceeds length: > 31 characters
+       Reason: "Identifier exceeds maximum length of 31 characters."
+       Example: A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P
+    
+    c) Invalid tail: contains characters not in [a-z0-9_]
+       Reason: "Identifier tail allows only lowercase letters, digits, or underscore."
+       Example: MyVar$ (contains $)
+
+MalformedLiteral Error:
+  Definition: Literal (float or int) violating syntax rules
+  Cases:
+    a) Float with no integer part: "." → .14
+       Reason: "Floating literal must contain digits before decimal point."
+    
+    b) Float with no fractional part: "14." → but digits required after
+       Reason: "Floating literal requires at least one digit after decimal point."
+    
+    c) Float exceeds precision: > 6 digits after decimal
+       Reason: "Floating literal exceeds maximum precision of 6 digits after decimal point."
+       Example: 3.1234567
+
+================================================================================
+5. CONTEXT-FREE GRAMMAR (Not Yet Implemented)
+================================================================================
+
+This specification defines ONLY the lexical level (tokens).
+The context-free grammar would come in the parser phase:
+
+Program ::= Statement*
+Statement ::= Assignment | FunctionCall | Block | Declaration
+Assignment ::= Identifier "=" Expression ";"
+Block ::= "{" Statement* "}"
+Expression ::= IdentifierOrLiteral ( Operator IdentifierOrLiteral )*
+...
+
+(Reserved for next phase: Parser/Syntax Analysis)
+
+================================================================================
+6. SYMBOL TABLE SPECIFICATION
+================================================================================
+
+SymbolTable ::= Map<String, SymbolEntry>
+
+SymbolEntry ::= {
+  name: String,
+  type: String ("identifier"),
+  firstLine: int,
+  firstColumn: int,
+  frequency: int (number of occurrences)
+}
+
+Operations:
+  - recordIdentifier(name, line, column) → void
+  - getEntries() → Collection<SymbolEntry>
+  - print() → void
+
+Use Case: Track all identifiers in source for later semantic analysis
+
+================================================================================
+7. RESERVED WORDS & KEYWORDS
+================================================================================
+
+Reserved Words (read-only, cannot be redefined):
+  true    → boolean literal value true
+  false   → boolean literal value false
+
+Future keywords (for reserved use):
+  (none currently defined)
+
+Note: The language is keyword-sparse. Most identifiers starting with
+uppercase letters can be used as variable/function names.
+
+================================================================================
+8. CHARACTER ENCODING
+================================================================================
+
+Source Code Encoding: UTF-8
+Line Terminators:
+  - LF   (Line Feed, \n, ASCII 10)
+  - CR   (Carriage Return, \r, ASCII 13)
+  - CRLF (Windows style: \r\n)
+
+All are treated as single line terminators for counting purposes.
+
+================================================================================
+9. COMPLIANCE & STANDARDS
+================================================================================
+
+Grammar Compliance: Custom language (not based on existing standard)
+Lexical Analysis Standard: Classic DFA-based tokenization
+Regular Expression Library: Java regex (Pattern/Matcher)
+Unicode Support: Full Java Unicode support
+Case Sensitivity: YES (true ≠ True, identifier ≠ Identifier)
+
+================================================================================
+10. EXAMPLE DERIVATIONS
+================================================================================
+
+Example 1: "Count = 42;"
+────────────────────────────────────────────────────────────────────────────
+Input String: "Count = 42;"
+Tokenization:
+  Position 0: "Count" matches Identifier(Priority 3, length 5)
+    → Token(IDENTIFIER, "Count", Line 1, Col 1)
+  Position 6: "=" matches Operator(Priority 6, length 1)
+    → Token(SINGLE_CHAR_OPERATOR, "=", Line 1, Col 7)
+  Position 8: "42" matches IntegerLiteral(Priority 5, length 2)
+    → Token(INTEGER_LITERAL, "42", Line 1, Col 9)
+  Position 10: ";" matches Punctuator(Priority 7, length 1)
+    → Token(PUNCTUATOR, ";", Line 1, Col 11)
+
+
+Example 2: "Value = 3.14159;"
+────────────────────────────────────────────────────────────────────────────
+Input String: "Value = 3.14159;"
+Tokenization:
+  Position 0-4: "Value" → Token(IDENTIFIER, "Value", Line 1, Col 1)
+  Position 6: "=" → Token(SINGLE_CHAR_OPERATOR, "=", Line 1, Col 7)
+  Position 8-14: "3.14159" matches FloatLiteral(Priority 4, length 7)
+    → Token(FLOATING_POINT_LITERAL, "3.14159", Line 1, Col 9)
+  Position 15: ";" → Token(PUNCTUATOR, ";", Line 1, Col 16)
+
+
+Example 3: "Flag = true; ## Boolean assignment"
+────────────────────────────────────────────────────────────────────────────
+Input String: "Flag = true; ## Boolean assignment"
+Tokenization:
+  Position 0-3: "Flag" → Token(IDENTIFIER, "Flag", Line 1, Col 1)
+  Position 5: "=" → Token(SINGLE_CHAR_OPERATOR, "=", Line 1, Col 7)
+  Position 7-10: "true" → Token(BOOLEAN_LITERAL, "true", Line 1, Col 9)
+  Position 11: ";" → Token(PUNCTUATOR, ";", Line 1, Col 13)
+  Position 12-34: "## Boolean assignment" (comment)
+    → SKIPPED (not returned in token stream)
+
+
+Example 4: "count = 10;" (ERROR)
+────────────────────────────────────────────────────────────────────────────
+Input String: "count = 10;"
+Tokenization:
+  Position 0-4: "count" matches InvalidIdentifier(Priority 8, length 5)
+    → ERROR(InvalidIdentifier, "count", Line 1, Col 1, 
+                "Identifier must start with an uppercase letter.")
+  (Scanner may continue or halt depending on error recovery mode)
+
+================================================================================
+11. SCANNER STATE DIAGRAM (SIMPLIFIED)
+================================================================================
+
+                     ┌─────────────┐
+                     │   START     │
+                     └──────┬──────┘
+                            │
+                ┌───────────┼───────────┐
+                │           │           │
+                ▼           ▼           ▼
+          ┌──────────┐ ┌────────┐ ┌────────┐
+          │Whitespace│ │Comment │ │ Symbol │
+          │(skip)    │ │(skip)  │ │(token) │
+          └──────────┘ └────────┘ └────────┘
+                │           │           │
+                └───────────┴───────────┘
+                            │
+                            ▼
+                    ┌──────────────────┐
+                    │ Check Patterns   │
+                    │ 1. Boolean       │
+                    │ 2. Identifier    │
+                    │ 3. Float         │
+                    │ 4. Integer       │
+                    │ 5. Operator      │
+                    │ 6. Punctuator    │
+                    │ 7. Invalid-ID    │
+                    │ 8. Error         │
+                    └────────┬─────────┘
+                             │
+                    ┌────────┴────────┐
+                    │                 │
+                    ▼                 ▼
+              ┌─────────────┐   ┌──────────┐
+              │Return Token │   │Report    │
+              │Continue     │   │Error     │
+              └─────────────┘   │Exit/Skip │
+                                └──────────┘
+
+================================================================================
+END OF GRAMMAR SPECIFICATION
+================================================================================
