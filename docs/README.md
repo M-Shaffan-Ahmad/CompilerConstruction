@@ -1,3 +1,13 @@
+
+## Team Members
+
+| Name | Roll Number |
+| --- | --- |
+| [Zaid Bin Umer] | [23i-0671] |
+| [Muhammad Shaffan Ahmad] | [23i-0673] |
+
+
+
 # Technical Documentation
 How to Run
 

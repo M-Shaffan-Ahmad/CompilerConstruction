@@ -1,5 +1,4 @@
 /* JFlex Specification for Custom Language Scanner */
-
 import java.util.*;
 
 %%
@@ -40,9 +39,10 @@ import java.util.*;
         return token;
     }
 
-    private Token createErrorToken(String errorType, String lexeme, String reason) {
+    /* Helper to record error WITHOUT returning a token. 
+       This allows the scanner to reset and keep going. */
+    private void reportError(String errorType, String lexeme, String reason) {
         errorHandler.addError(errorType, yyline + 1, yycolumn + 1, lexeme, reason);
-        return null;
     }
 
     public List<Token> scanAllTokens() throws java.io.IOException {
@@ -87,14 +87,15 @@ WHITESPACE = [ \t\n\r]
 DIGIT = [0-9]
 LOWERCASE = [a-z]
 UPPERCASE = [A-Z]
-LETTER = [A-Za-z]
-IDENTIFIER_START = {UPPERCASE}
-IDENTIFIER_TAIL = [a-z0-9_]
+/* We allow uppercase in tail here so we can catch it in Java logic and report specific error */
+IDENTIFIER_TAIL = [a-zA-Z0-9_]
 IDENTIFIER = {UPPERCASE}{IDENTIFIER_TAIL}*
 
 SIGN = [+\-]
+EXPONENT = [eE][+-]?[0-9]+
 INTEGER = {SIGN}?{DIGIT}+
-FLOAT_BASE = {SIGN}?{DIGIT}+\.{DIGIT}+
+/* Float Regex supporting Scientific Notation */
+FLOAT = {SIGN}?{DIGIT}+\.{DIGIT}+({EXPONENT})?
 
 SINGLE_LINE_COMMENT = ##[^\n]*
 BOOLEAN_LITERAL = true|false
@@ -105,75 +106,97 @@ PUNCTUATOR = [()\{\}\[\],;:]
 
 /* Token Rules in Priority Order */
 
-/* 1. Single Line Comment - Priority 1 */
+/* 1. Single Line Comment */
 {SINGLE_LINE_COMMENT} {
-    // Skip comments and continue to next token
-    return nextToken();
+    /* Ignore comments */
 }
 
-/* 2. Boolean Literal - Priority 2 */
+/* 2. Boolean Literal */
 {BOOLEAN_LITERAL} {
     return createToken(TokenType.BOOLEAN_LITERAL, yytext());
 }
 
-/* 3. Identifier - Priority 3 */
+/* 3. Identifiers */
 {IDENTIFIER} {
     String text = yytext();
+    
+    // Check 1: Length Limit
     if (text.length() > 31) {
-        return createErrorToken("InvalidIdentifier", text, 
-            "Identifier exceeds maximum length of 31 characters.");
+        reportError("InvalidIdentifier", text, "Identifier exceeds maximum length of 31 characters.");
+        // Do NOT return token (matches Expected output where token is missing)
+    } 
+    // Check 2: Uppercase in Tail (For Test 1 Match)
+    // We check if the tail (substring 1) contains any uppercase letters
+    else if (!text.substring(1).equals(text.substring(1).toLowerCase())) {
+        reportError("InvalidIdentifier", text, "Identifier tail allows only lowercase letters, digits, or underscore.");
+        // Do NOT return token (matches Expected output where token is missing)
     }
-    return createToken(TokenType.IDENTIFIER, text);
+    // Valid Identifier
+    else {
+        return createToken(TokenType.IDENTIFIER, text);
+    }
 }
 
-/* 4. Floating Point Literal - Priority 4 */
-{SIGN}?{DIGIT}+\.{DIGIT}+ {
+/* 4. Floating Point Literal */
+{FLOAT} {
     String text = yytext();
-    // Extract digits after decimal point
-    int dotIndex = text.lastIndexOf('.');
-    int digitsAfterDot = text.length() - dotIndex - 1;
+    
+    /* Check for precision limit (max 6 digits after dot) */
+    int dotIndex = text.indexOf('.');
+    int expIndex = text.toLowerCase().indexOf('e');
+    int endOfDecimals = (expIndex == -1) ? text.length() : expIndex;
+    int digitsAfterDot = endOfDecimals - dotIndex - 1;
     
     if (digitsAfterDot > 6) {
-        return createErrorToken("MalformedLiteral", text,
-            "Floating literal exceeds maximum precision of 6 digits after decimal point.");
+        reportError("MalformedLiteral", text, "Floating literal allows at most 6 digits after decimal point.");
+        // Malformed floats are skipped in token stream in some tests, or added as errors. 
+        // Based on Test 5, we just report error and do not return.
+    } else {
+        return createToken(TokenType.FLOATING_POINT_LITERAL, text);
     }
-    return createToken(TokenType.FLOATING_POINT_LITERAL, text);
 }
 
-/* 5. Integer Literal - Priority 5 */
+/* 5. Malformed Float Rules (Catch specific cases) */
+{DIGIT}+\. {
+    reportError("MalformedLiteral", yytext(), "Floating literal requires at least one digit after decimal point.");
+}
+
+{DIGIT}+\.{DIGIT}+\.{DIGIT}+ {
+    reportError("MalformedLiteral", yytext(), "Floating literal contains multiple decimal points.");
+}
+
+{DIGIT}+\.{DIGIT}+[eE][+-]? {
+    reportError("MalformedLiteral", yytext(), "Exponent part must contain at least one digit.");
+}
+
+/* 6. Integer Literal */
 {INTEGER} {
     return createToken(TokenType.INTEGER_LITERAL, yytext());
 }
 
-/* 6. Single Char Operator - Priority 6 */
+/* 7. Operators & Punctuators */
 {SINGLE_CHAR_OPERATOR} {
     return createToken(TokenType.SINGLE_CHAR_OPERATOR, yytext());
 }
 
-/* 7. Punctuator - Priority 7 */
 {PUNCTUATOR} {
     return createToken(TokenType.PUNCTUATOR, yytext());
 }
 
-/* 8. Invalid Identifier (starts with lowercase) - Priority 8 */
-{LOWERCASE}{IDENTIFIER_TAIL}* {
-    String text = yytext();
-    return createErrorToken("InvalidIdentifier", text,
-        "Identifier must start with an uppercase letter.");
+/* 8. Invalid Identifier (Lowercase start) */
+/* Matches things like 'trueFlag' or 'badVar' */
+[a-z][a-zA-Z0-9_]* {
+    reportError("InvalidIdentifier", yytext(), "Identifier must start with an uppercase letter.");
 }
 
-/* Whitespace - Skip */
+/* 9. Whitespace */
 {WHITESPACE} {
-    // Skip whitespace and continue
-    return nextToken();
+    /* Skip */
 }
 
-/* Anything else - Invalid character */
-. {
-    String text = yytext();
-    createErrorToken("InvalidCharacter", text,
-        "Character does not start any valid token in the selected 7 token classes.");
-    return nextToken();
+/* 10. Catch-all for other invalid characters */
+[^] {
+    reportError("InvalidCharacter", yytext(), "Character does not start any valid token in the selected 7 token classes.");
 }
 
 <<EOF>> {
